@@ -1,0 +1,50 @@
+nav {
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+  
+    margin: 0 auto;
+  
+    border-bottom: 2px solid #e8e8e8;
+  
+    a {
+      text-decoration: none;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  
+    .logo {
+      display: grid;
+      align-items: center;
+      gap: 1ch;
+  
+      img {
+        height: 2rem;
+      }
+  
+      span {
+        display: none;
+        font-weight: bold;
+      }
+    }
+  
+    menu {
+      list-style: none;
+  
+      display: grid;
+      gap: 2ch;
+  
+      a.active {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  @media screen and (min-width: 400px) {
+    nav .logo span {
+      display: block;
+    }
+  }
