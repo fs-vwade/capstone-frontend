@@ -5,7 +5,6 @@ import { logout } from "../features/account/authSlice"; //need to change this
 import bookImg from "../assets/logo.png"; //need to change folder path?
 import "./Navbar.scss"; //should present as verticle navbar
 
-/** Main site navigation */
 function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -36,7 +35,8 @@ function Navbar() {
           </>
         ) : (
           <li>
-            {/* <NavLink to="/login">Log In</NavLink> not sure how to setup profile and login button */}
+            {/* not sure how to setup profile and login button */}
+            <NavLink to="/login">Log In</NavLink>
           </li>
         )}
       </menu>
