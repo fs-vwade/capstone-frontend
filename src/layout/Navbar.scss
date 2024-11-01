@@ -2,11 +2,11 @@ nav {
     display: grid;
     justify-content: space-between;
     align-items: center;
-    height: 3rem;
+    height: 5rem;
   
     margin: 0 auto;
   
-    border-bottom: 2px solid #e8e8e8;
+    border-bottom: 3px solid #e8e8e8;
   
     a {
       text-decoration: none;
@@ -19,10 +19,10 @@ nav {
     .logo {
       display: grid;
       align-items: center;
-      gap: 1ch;
+      gap: 2ch;
   
       img {
-        height: 2rem;
+        height: 4rem;
       }
   
       span {
@@ -35,7 +35,7 @@ nav {
       list-style: none;
   
       display: grid;
-      gap: 2ch;
+      gap: 3ch;
   
       a.active {
         text-decoration: underline;
