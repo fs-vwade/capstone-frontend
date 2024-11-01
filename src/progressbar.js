@@ -5,7 +5,7 @@ const ProgressBar = ({ completed }) => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setProgress((prevProgress) => {
+            setProgress((prev = [...prev, progress]) => {
                 if (prevProgress >= completed) {
                     clearInterval(interval);
                     return completed;
