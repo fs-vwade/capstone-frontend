@@ -22,7 +22,6 @@ function Navbar() {
       <NavLink to="/" className="logo">
         /* need to be lookat */
         <img src={logoImg} />
-        {/* <span> just logo is fine, does not need site name or else per wireframe < /span> */}
       </NavLink>
       <menu>
         <li>
