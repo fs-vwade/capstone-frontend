@@ -17,3 +17,8 @@ const ProgressBar = ({ completed }) => {
         return () => clearInterval(interval);
     }, [completed]);
 }
+
+
+
+
+export default ProgressBar;
