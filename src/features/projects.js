@@ -1,3 +1,4 @@
+// src/features/projects.js
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const projectsApi = createApi({
@@ -29,12 +30,11 @@ export const projectsApi = createApi({
   }),
 });
 
-// Export the hooks
+// Export the auto-generated hooks
 export const {
   useGetProjectsQuery,
   useGetProjectByIdQuery,
   useUpdateProjectStatusMutation,
 } = projectsApi;
 
-// Make sure to export projectsApi
 export default projectsApi;
