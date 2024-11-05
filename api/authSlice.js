@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import api from 
-// not done with writing out api
 
 //user account endpoints?*
 const authApi = api.injectEndpoints({
