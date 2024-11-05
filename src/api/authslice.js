@@ -3,7 +3,7 @@ import api from
 // not done with writing out api
 
 //user account endpoints?*
-const authApi = api.injectEndpoints ({
+const authApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getUser: builder.query({
             query: () => "/users/me",
@@ -31,5 +31,7 @@ const authApi = api.injectEndpoints ({
             invalidatesTags: ["User"],
         }),
     }),
-}),
+});
+
+export const 
 
