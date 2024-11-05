@@ -7,8 +7,8 @@ const authApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getUser: builder.query({
             query: () => "/users/me",
+            //may need to change this
             providesTags: ["User"],
-             //may need to change this
         }),
         register: builder.mutation({
             query: (credentials) => ({
