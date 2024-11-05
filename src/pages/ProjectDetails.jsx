@@ -1,7 +1,7 @@
 // src/pages/ProjectDetails.jsx
-import React from "react";
+
 import { useParams } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+//import { ArrowLeft } from "lucide-react";
 import ProgressBar from "../components/ProgressBar";
 import { useGetProjectByIdQuery } from "../../api/projectSlice";
 
