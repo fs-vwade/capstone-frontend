@@ -1,6 +1,6 @@
-import React from "react";
+//import React from "react";
 import { useSelector } from "react-redux";
-import { Activity, BookOpen, CheckCircle } from "lucide-react";
+//import { Activity, BookOpen, CheckCircle } from "lucide-react";
 import ProgressBar from "../components/ProgressBar";
 
 const Profile = () => {
