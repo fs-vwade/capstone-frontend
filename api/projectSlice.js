@@ -19,7 +19,7 @@ export const projectsApi = createApi({
 			}),
 			invalidatesTags: ["Project"],
 		}),
-		postProjectSubmission: builder.mutation({
+		putProjectSubmission: builder.mutation({
 			query: ({ submission }) => ({
 				url: `submissions`,
 				method: "PUT",
@@ -37,8 +37,9 @@ export const projectsApi = createApi({
 // Export the auto-generated hooks
 export const {
 	useGetProjectsQuery,
-	useGetProjectByIdQuery,
-	useUpdateProjectSubmitMutation,
+	useGetProjectsByIdQuery,
+	usePostProjectEnrollmentMutation,
+	usePutProjectSubmissionMutation,
 } = projectsApi;
 
 export default projectsApi;
