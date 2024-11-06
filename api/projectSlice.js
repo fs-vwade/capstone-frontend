@@ -1,29 +1,28 @@
 // src/features/projects.js
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
 
 export const projectsApi = createApi({
 	reducerPath: "projectsApi",
-	baseQuery: fetchBaseQuery({
-		baseUrl: "/api",
-		prepareHeaders: (headers, { getState }) => {
-			const token = getState().auth.token;
-			if (token) headers.set("authorization", `Bearer ${token}`);
-			return headers;
-		},
-	}),
 	endpoints: (builder) => ({
 		getProjects: builder.query({
 			query: () => "projects",
+			providesTags: ["Project"],
 		}),
 		getProjectById: builder.query({
 			query: (id) => `projects/${id}`,
+			providesTags: ["Project"],
 		}),
-		updateProjectStatus: builder.mutation({
-			query: ({ id, status }) => ({
-				url: `projects/${id}/status`,
-				method: "PATCH",
-				body: { status },
+		updateProjectSubmit: builder.mutation({
+			query: ({ id, submission }) => ({
+				url: `projects/${id}`,
+				method: "submissions",
+				body: {
+					studentId: submission.studentId,
+					projectId: submission.projectId,
+					grade: submission.grade,
+				},
 			}),
+			invalidatesTags: ["Project"],
 		}),
 	}),
 });
@@ -32,7 +31,7 @@ export const projectsApi = createApi({
 export const {
 	useGetProjectsQuery,
 	useGetProjectByIdQuery,
-	useUpdateProjectStatusMutation,
+	useUpdateProjectSubmitMutation,
 } = projectsApi;
 
 export default projectsApi;
