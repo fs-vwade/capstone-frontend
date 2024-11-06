@@ -1,33 +1,26 @@
-// src/features/projects.js
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import api from "./store/api";
 
-export const projectsApi = createApi({
-	reducerPath: "projectsApi",
-	baseQuery: fetchBaseQuery({
-		baseUrl: "/",
-		prepareHeaders: (headers, { getState }) => {
-			const token = getState().auth.token;
-			if (token) headers.set("authorization", `Bearer ${token}`);
-			return headers;
-		},
-	}),
+const projectsApi = api.injectEndpoints({
 	endpoints: (builder) => ({
 		getProjects: builder.query({
 			query: () => "projects",
-			providesTags: ["Project"],
+			transformResponse: (response) => response,
 		}),
-		getProject: builder.query({
+		getProjectInfo: builder.query({
 			query: (id) => `projects/${id}`,
+			transformResponse: (response) => response,
 			providesTags: ["Project"],
 		}),
-		postEnrollment: builder.mutation({
-			query: (id) => ({
+		enroll: builder.mutation({
+			query: ({ id, status }) => ({
 				url: `projects/${id}`,
 				method: "POST",
+				body: { status },
 			}),
+			transformResponse: (response) => response,
 			invalidatesTags: ["Project"],
 		}),
-		putSubmission: builder.mutation({
+		submit: builder.mutation({
 			query: ({ submission }) => ({
 				url: `submissions`,
 				method: "PUT",
@@ -37,6 +30,7 @@ export const projectsApi = createApi({
 					grade: submission.grade,
 				},
 			}),
+			transformResponse: (response) => response,
 			invalidatesTags: ["Project"],
 		}),
 	}),
@@ -45,9 +39,9 @@ export const projectsApi = createApi({
 // Export the auto-generated hooks
 export const {
 	useGetProjectsQuery,
-	useGetProjectQuery,
-	usePostEnrollmentMutation,
-	usePutSubmissionMutation,
+	useGetProjectInfoQuery,
+	useEnrollMutation,
+	useSubmitMutation,
 } = projectsApi;
 
 export default projectsApi;
