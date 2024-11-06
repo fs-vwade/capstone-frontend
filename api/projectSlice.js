@@ -13,7 +13,7 @@ export const projectsApi = createApi({
 			providesTags: ["Project"],
 		}),
 		updateProjectSubmit: builder.mutation({
-			query: ({ id, submission }) => ({
+			query: ({ submission }) => ({
 				url: `submissions`,
 				method: "PUT",
 				body: {
