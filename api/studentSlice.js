@@ -1,6 +1,6 @@
 import api from "./store/api";
 
-const studentSlice = api.injectEndpoints({
+const studentApi = api.injectEndpoints({
 	endpoints: (builder) => ({
 		getStudent: builder.query({
 			query: () => `info`,
@@ -14,6 +14,6 @@ const studentSlice = api.injectEndpoints({
 });
 
 // Export the auto-generated hooks
-export const { useGetStudentQuery, useGetProfileQuery } = studentSlice;
+export const { useGetStudentQuery, useGetProfileQuery } = studentApi;
 
-export default studentSlice;
+export default studentApi;
