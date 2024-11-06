@@ -1,5 +1,5 @@
 // src/components/Navbar.jsx
-import React, { useState } from "react"; // Add useState
+import { useState } from "react"; // Add useState
 import { Link, useNavigate } from "react-router-dom";
 import { Bell, Settings, ChevronDown } from "lucide-react"; // Add ChevronDown
 import { useSelector, useDispatch } from "react-redux"; // Add useDispatch
