@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import api from "./store/api";
-import store from "./store/store";
 
 const authApi = api.injectEndpoints({
 	endpoints: (builder) => ({
