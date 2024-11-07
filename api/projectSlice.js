@@ -7,7 +7,10 @@ const projectsApi = api.injectEndpoints({
 			transformResponse: (response) => response,
 		}),
 		getProjectInfo: builder.query({
-			query: (id) => `projects/${id}`,
+			query: (id) => ({
+				url: `projects/${id}`,
+				method: "GET",
+			}),
 			transformResponse: (response) => response,
 			providesTags: ["Project"],
 		}),
@@ -20,14 +23,10 @@ const projectsApi = api.injectEndpoints({
 			invalidatesTags: ["Project"],
 		}),
 		submit: builder.mutation({
-			query: ({ submission }) => ({
+			query: ({ studentId, projectId, grade }) => ({
 				url: `submissions`,
 				method: "PUT",
-				body: {
-					studentId: submission.studentId,
-					projectId: submission.projectId,
-					grade: submission.grade,
-				},
+				body: { studentId, projectId, grade },
 			}),
 			transformResponse: (response) => response,
 			invalidatesTags: ["Project"],
