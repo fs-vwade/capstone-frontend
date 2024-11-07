@@ -1,29 +1,36 @@
-// src/features/projects.js
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import api from "./store/api";
 
-export const projectsApi = createApi({
-	reducerPath: "projectsApi",
-	baseQuery: fetchBaseQuery({
-		baseUrl: "/api",
-		prepareHeaders: (headers, { getState }) => {
-			const token = getState().auth.token;
-			if (token) headers.set("authorization", `Bearer ${token}`);
-			return headers;
-		},
-	}),
+const projectsApi = api.injectEndpoints({
 	endpoints: (builder) => ({
 		getProjects: builder.query({
 			query: () => "projects",
+			transformResponse: (response) => response,
 		}),
-		getProjectById: builder.query({
-			query: (id) => `projects/${id}`,
-		}),
-		updateProjectStatus: builder.mutation({
-			query: ({ id, status }) => ({
-				url: `projects/${id}/status`,
-				method: "PATCH",
-				body: { status },
+		getProjectInfo: builder.query({
+			query: (id) => ({
+				url: `projects/${id}`,
+				method: "GET",
 			}),
+			transformResponse: (response) => response,
+			providesTags: ["Project"],
+		}),
+		enroll: builder.mutation({
+			query: (id) => ({
+				url: `projects/${id}`,
+				method: "POST",
+			}),
+			transformResponse: (response) => response,
+			invalidatesTags: ["Project"],
+		}),
+		submit: builder.mutation({
+			query: ({ studentId, projectId, grade }) => ({
+				url: `submissions`,
+				method: "PUT",
+				headers: { "Content-Type": "application/json" },
+				body: { studentId, projectId, grade },
+			}),
+			transformResponse: (response) => response,
+			invalidatesTags: ["Project"],
 		}),
 	}),
 });
@@ -31,8 +38,9 @@ export const projectsApi = createApi({
 // Export the auto-generated hooks
 export const {
 	useGetProjectsQuery,
-	useGetProjectByIdQuery,
-	useUpdateProjectStatusMutation,
+	useGetProjectInfoQuery,
+	useEnrollMutation,
+	useSubmitMutation,
 } = projectsApi;
 
 export default projectsApi;

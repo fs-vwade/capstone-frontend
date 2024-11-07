@@ -1,13 +1,12 @@
 // src/pages/ProjectDetails.jsx
 
 import { useParams } from "react-router-dom";
-//import { ArrowLeft } from "lucide-react";
 import ProgressBar from "../components/ProgressBar";
-import { useGetProjectByIdQuery } from "../../api/projectSlice";
+import { useGetProjectInfoQuery } from "../../api/projectSlice";
 
 const ProjectDetails = () => {
 	const { id } = useParams();
-	const { data: project, isLoading } = useGetProjectByIdQuery(id);
+	const { data: project, isLoading } = useGetProjectInfoQuery(id);
 
 	if (isLoading) return <div>Loading...</div>;
 

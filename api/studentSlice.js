@@ -1,15 +1,12 @@
-// api/studentSlice.js
+import api from "./store/api";
 
-import { createApi } from "@reduxjs/toolkit/query/react";
-
-const studentSlice = createApi({
-	reducerPath: "studentSlice",
+const studentApi = api.injectEndpoints({
 	endpoints: (builder) => ({
 		getStudent: builder.query({
 			query: () => `info`,
 			providesTags: ["Student"],
 		}),
-		getStudentByProfile: builder.query({
+		getProfile: builder.query({
 			query: (username) => `profile/${username}`,
 			providesTags: ["Student"],
 		}),
@@ -17,6 +14,6 @@ const studentSlice = createApi({
 });
 
 // Export the auto-generated hooks
-export const { useGetStudentQuery, useGetStudentByProfileQuery } = studentSlice;
+export const { useGetStudentQuery, useGetProfileQuery } = studentApi;
 
-export default studentSlice;
+export default studentApi;

@@ -1,27 +1,43 @@
 // src/pages/Home.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setCredentials } from "../../api/authSlice";
+import {
+	useLoginMutation,
+	useRegisterMutation,
+	setCredentials,
+} from "../../api/authSlice";
 
 const Home = () => {
+	const navigate = useNavigate();
+
 	const [isLogin, setIsLogin] = useState(true);
+	const authAction = isLogin ? "Login" : "Register";
+	const altCopy = isLogin
+		? "Need an account? Register here."
+		: "Already registered? Login here.";
+
+	// TODO -- if the user is already logged in, navigate to their profile page
+
+	const [login, { error: loginError }] = useLoginMutation();
+	const [register, { error: registerError }] = useRegisterMutation();
+
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	const navigate = useNavigate();
-	const dispatch = useDispatch();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (username && password) {
-			// Simulate API call
-			const userData = {
-				user: { username },
-				token: "dummy-token-" + Math.random(),
-			};
 
-			dispatch(setCredentials(userData));
-			navigate("/profile");
+		if (username && password) {
+			// Perform API call
+
+			const authMethod = isLogin ? login : register;
+
+			try {
+				await authMethod({ username, password });
+				navigate("/profile");
+			} catch (e) {
+				console.error(e);
+			}
 		}
 	};
 
