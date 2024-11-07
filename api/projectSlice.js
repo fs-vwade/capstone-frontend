@@ -4,14 +4,14 @@ const projectsApi = api.injectEndpoints({
 	endpoints: (builder) => ({
 		getProjects: builder.query({
 			query: () => "projects",
-			transformResponse: (response) => response.projects,
+			transformResponse: ({ projects }) => projects,
 		}),
 		getProjectInfo: builder.query({
 			query: (id) => ({
 				url: `projects/${id}`,
 				method: "GET",
 			}),
-			transformResponse: (response) => response,
+			transformResponse: ({ project }) => project,
 			providesTags: ["Project"],
 		}),
 		enroll: builder.mutation({
