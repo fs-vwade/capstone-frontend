@@ -13,7 +13,7 @@ const ProgressBar = ({ value, label }) => {
 			>
 				<div
 					className="h-full bg-blue-500 transition-all duration-300 ease-in-out"
-					style={{ width: `${value}%` }}
+					style={{ width: `${Math.min(Math.max(0, value), 100)}%` }}
 				/>
 			</Progress>
 		</div>
