@@ -5,7 +5,8 @@ const Profile = () => {
 	const { data: student, isLoading } = useGetStudentQuery();
 	console.debug(student);
 
-	const levelPercent = (level - Math.floor(level)) * 100;
+	const levelPercent =
+		Math.floor((student?.level - Math.floor(student?.level)) * 10000) / 100;
 
 	if (isLoading) return <div>Loading...</div>;
 

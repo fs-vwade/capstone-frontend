@@ -4,10 +4,12 @@ const studentApi = api.injectEndpoints({
 	endpoints: (builder) => ({
 		getStudent: builder.query({
 			query: () => `info`,
+			transformResponse: (response) => response.student,
 			providesTags: ["Student"],
 		}),
 		getProfile: builder.query({
 			query: (username) => `profile/${username}`,
+			transformResponse: (response) => response.student,
 			providesTags: ["Student"],
 		}),
 	}),
