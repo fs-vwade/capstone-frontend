@@ -4,7 +4,7 @@ const projectsApi = api.injectEndpoints({
 	endpoints: (builder) => ({
 		getProjects: builder.query({
 			query: () => "projects",
-			transformResponse: (response) => response,
+			transformResponse: (response) => response.projects,
 		}),
 		getProjectInfo: builder.query({
 			query: (id) => ({
