@@ -10,6 +10,8 @@ const ProjectDetails = () => {
 
 	if (isLoading) return <div>Loading...</div>;
 
+	function subscribe() {}
+
 	return (
 		<div className="max-w-7xl mx-auto px-4 py-6">
 			<div className="bg-gray-800 rounded-lg p-6">
@@ -20,17 +22,14 @@ const ProjectDetails = () => {
 					</div>
 					<span
 						className={`px-4 py-2 rounded-full text-sm ${
-							project?.status === "completed"
-								? "bg-green-500"
-								: project?.status === "in-progress"
-								? "bg-blue-500"
-								: "bg-gray-500"
+							project?.enrolled ? "bg-green-500" : "bg-gray-500"
 						}`}
 					>
-						{project?.status}
+						{project?.enrolled ?? project?.grade}
+						{project?.description}
 					</span>
 				</div>
-				<ProgressBar value={project?.exp || 0} max={100} label="Progress" />
+				{<ProgressBar value={project?.grade} label="Score" />}
 			</div>
 		</div>
 	);
