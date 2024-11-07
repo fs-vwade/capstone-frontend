@@ -4,7 +4,7 @@ import api from "./store/api";
 const authApi = api.injectEndpoints({
 	endpoints: (builder) => ({
 		register: builder.mutation({
-			query: (username, password) => ({
+			query: ({ username, password }) => ({
 				url: `register`,
 				method: "POST",
 				body: { username, password },
@@ -13,7 +13,7 @@ const authApi = api.injectEndpoints({
 			invalidatesTags: ["Student"],
 		}),
 		login: builder.mutation({
-			query: (username, password) => ({
+			query: ({ username, password }) => ({
 				url: `login`,
 				method: "POST",
 				body: { username, password },

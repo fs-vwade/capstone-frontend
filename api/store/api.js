@@ -5,10 +5,13 @@ const API_URL = `http://localhost:3000/`;
 const api = createApi({
 	baseQuery: fetchBaseQuery({
 		baseUrl: encodeURI(API_URL),
-		prepareHeaders: (headers, { getState }) => {
+		prepareHeaders: (headers, { getState, endpoint }) => {
 			const token = getState().auth.token;
+
+			const isPublic = ["register", "login", "profile"].includes(endpoint);
+
 			headers.set("content-type", `application/json`);
-			token && headers.set("authorization", `Bearer ${token}`);
+			token && !isPublic && headers.set("authorization", `Bearer ${token}`);
 			return headers;
 		},
 	}),
