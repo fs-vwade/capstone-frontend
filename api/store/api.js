@@ -7,10 +7,8 @@ const api = createApi({
 		baseUrl: encodeURI(API_URL),
 		prepareHeaders: (headers, { getState, endpoint }) => {
 			const token = getState().auth.token;
-
 			const isPublic = ["register", "login", "profile"].includes(endpoint);
 
-			headers.set("content-type", `application/json`);
 			token && !isPublic && headers.set("authorization", `Bearer ${token}`);
 			return headers;
 		},

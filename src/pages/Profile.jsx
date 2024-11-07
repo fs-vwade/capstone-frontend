@@ -3,6 +3,9 @@ import { useGetStudentQuery } from "../../api/studentSlice";
 
 const Profile = () => {
 	const { data: student, isLoading } = useGetStudentQuery();
+	console.debug(student);
+
+	const levelPercent = (level - Math.floor(level)) * 100;
 
 	if (isLoading) return <div>Loading...</div>;
 
@@ -20,7 +23,7 @@ const Profile = () => {
 						</p>
 					</div>
 				</div>
-				<ProgressBar value={student?.exp || 0} max={100} label="Experience" />
+				<ProgressBar value={levelPercent} label="Experience" />
 			</div>
 		</div>
 	);

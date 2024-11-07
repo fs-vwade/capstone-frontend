@@ -16,6 +16,8 @@ const Home = () => {
 		? "Need an account? Register here."
 		: "Already registered? Login here.";
 
+	// TODO -- if the user is already logged in, navigate to their profile page
+
 	const [login, { error: loginError }] = useLoginMutation();
 	const [register, { error: registerError }] = useRegisterMutation();
 
@@ -32,7 +34,7 @@ const Home = () => {
 
 			try {
 				await authMethod({ username, password });
-				navigate("/");
+				navigate("/profile");
 			} catch (e) {
 				console.error(e);
 			}

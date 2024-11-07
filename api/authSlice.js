@@ -7,6 +7,7 @@ const authApi = api.injectEndpoints({
 			query: ({ username, password }) => ({
 				url: `register`,
 				method: "POST",
+				headers: { "Content-Type": "application/json" },
 				body: { username, password },
 			}),
 			transformResponse: (response) => response,
@@ -16,6 +17,7 @@ const authApi = api.injectEndpoints({
 			query: ({ username, password }) => ({
 				url: `login`,
 				method: "POST",
+				headers: { "Content-Type": "application/json" },
 				body: { username, password },
 			}),
 			transformResponse: (response) => response,

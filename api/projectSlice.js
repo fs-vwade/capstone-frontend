@@ -26,6 +26,7 @@ const projectsApi = api.injectEndpoints({
 			query: ({ studentId, projectId, grade }) => ({
 				url: `submissions`,
 				method: "PUT",
+				headers: { "Content-Type": "application/json" },
 				body: { studentId, projectId, grade },
 			}),
 			transformResponse: (response) => response,
