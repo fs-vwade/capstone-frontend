@@ -11,7 +11,7 @@ const Profile = () => {
 	if (isLoading) return <div>Loading...</div>;
 
 	return (
-		<div className="max-w-7xl mx-auto px-4 py-6">
+		<div name="profile-page" className="max-w-7xl mx-auto px-4 py-6">
 			<div className="bg-gray-800 rounded-lg p-6">
 				<div className="flex items-center mb-4">
 					<div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center text-xl font-bold">

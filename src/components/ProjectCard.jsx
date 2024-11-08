@@ -14,6 +14,7 @@ const ProjectCard = ({ project, onClick }) => {
 
 	return (
 		<div
+			name="project-card"
 			className="bg-gray-800 rounded-lg p-6 cursor-pointer hover:bg-gray-750"
 			onClick={onClick}
 		>

@@ -17,7 +17,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<nav className="bg-gray-800 border-b border-gray-700">
+		<nav name="nav-bar" className="bg-gray-800 border-b border-gray-700">
 			<div className="max-w-7xl mx-auto px-4">
 				<div className="flex items-center justify-between h-16">
 					<div className="flex items-center">
@@ -36,7 +36,7 @@ const Navbar = () => {
 						<Settings className="w-5 h-5 text-gray-400 hover:text-white cursor-pointer" />
 
 						{/* Profile dropdown */}
-						<div className="relative">
+						<div name="navbar-profile-icon" className="relative">
 							<button
 								onClick={() => setShowDropdown(!showDropdown)}
 								className="flex items-center space-x-2 cursor-pointer"
@@ -49,7 +49,10 @@ const Navbar = () => {
 
 							{/* Dropdown menu */}
 							{showDropdown && (
-								<div className="absolute right-0 mt-2 w-48 py-2 bg-gray-800 rounded-lg shadow-xl border border-gray-700">
+								<div
+									name="navbar-profile-menu"
+									className="absolute right-0 mt-2 w-48 py-2 bg-gray-800 rounded-lg shadow-xl border border-gray-700"
+								>
 									<Link
 										to="/profile"
 										className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 hover:text-white"
