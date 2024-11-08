@@ -14,11 +14,29 @@ const ProgressBar = ({ value, label }) => {
 	}, []);
 
 	const testBar = (
-		<Progress.Root value={progress}>
+		<Progress.Root
+			value={progress}
+			name="experimental-progressbar"
+			className="h-2"
+		>
 			<Progress.Indicator
 				style={{ width: `${progress}%` }}
+				className="h-full bg-blue-900 transition-all duration-300 ease-in-out"
 			></Progress.Indicator>
 		</Progress.Root>
+	);
+
+	const otherBar = (
+		<Progress.Progress
+			value={progress}
+			name="other-bar"
+			className="w-full h-2 bg-gray-700 rounded-full overflow-hidden"
+		>
+			<div
+				className="h-full bg-blue-500 transition-all duration-300 ease-in-out"
+				style={{ width: `${progress}%` }}
+			/>
+		</Progress.Progress>
 	);
 
 	return (
@@ -29,15 +47,7 @@ const ProgressBar = ({ value, label }) => {
 					<span>{progress}%</span>
 				</div>
 				{testBar}
-				<Progress.Progress
-					value={progress}
-					className="w-full h-2 bg-gray-700 rounded-full overflow-hidden"
-				>
-					<div
-						className="h-full bg-blue-500 transition-all duration-300 ease-in-out"
-						style={{ width: `${progress}%` }}
-					/>
-				</Progress.Progress>
+				{otherBar}
 			</div>
 		</>
 	);
