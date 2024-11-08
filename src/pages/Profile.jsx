@@ -1,5 +1,6 @@
 import ProgressBar from "../components/ProgressBar";
 import { useGetStudentQuery } from "../../api/studentSlice";
+import XPBar from "../components/XPBar";
 
 const Profile = () => {
 	const { data: student, isLoading } = useGetStudentQuery();
@@ -24,7 +25,7 @@ const Profile = () => {
 						</p>
 					</div>
 				</div>
-				<ProgressBar value={levelPercent} label="Experience" />
+				<XPBar value={levelPercent} label="Experience" />
 			</div>
 		</div>
 	);
