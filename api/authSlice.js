@@ -32,28 +32,28 @@ const TOKEN_KEY = "token";
 
 const storeToken = (state, { payload }) => {
 	state.token = payload.token;
-	sessionStorage.setItem(TOKEN_KEY, payload.token);
+	localStorage.setItem(TOKEN_KEY, payload.token);
 };
 
 const authSlice = createSlice({
 	name: "auth",
 	initialState: {
 		user: null,
-		token: sessionStorage.getItem(TOKEN_KEY),
-		isAuthenticated: !!sessionStorage.getItem(TOKEN_KEY),
+		token: localStorage.getItem(TOKEN_KEY),
+		isAuthenticated: !!localStorage.getItem(TOKEN_KEY),
 	},
 	reducers: {
 		setCredentials: (state, { payload }) => {
 			state.user = payload.user;
 			state.token = payload.token;
 			state.isAuthenticated = true;
-			sessionStorage.setItem(TOKEN_KEY, payload.token);
+			localStorage.setItem(TOKEN_KEY, payload.token);
 		},
 		logout: (state) => {
 			state.user = null;
 			state.token = null;
 			state.isAuthenticated = false;
-			sessionStorage.removeItem(TOKEN_KEY);
+			localStorage.removeItem(TOKEN_KEY);
 		},
 	},
 	extraReducers: (builder) => {
