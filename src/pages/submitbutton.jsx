@@ -13,4 +13,9 @@ projectpageButton.addEventListener("click", function () {
 });
 
 //adding server-side integration//
-function fetchUserData() {}
+function fetchUserData() {
+    const UserData = {
+        accountType: 'registered'
+    };
+    if 
+}
