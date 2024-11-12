@@ -17,10 +17,10 @@ function fetchUserData() {
   const UserData = {
     accountType: 'registered',
   };
-  if (UserData.accountType === "registered") {
-    projectpageButton.textContent = "Enroll";
-  } else if (UserData.accountType === "enrolled") {
-    projectpageButton.textContent = "Submit";
+  if (UserData.accountType === 'registered') {
+    projectpageButton.textContent = 'Enroll';
+  } else if (UserData.accountType === 'enrolled') {
+    projectpageButton.textContent = 'Submit';
   } else if {
     projectpageButton.textContent = 'Register'
   }
