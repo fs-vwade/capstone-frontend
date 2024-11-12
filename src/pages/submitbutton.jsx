@@ -14,15 +14,15 @@ projectpageButton.addEventListener("click", function () {
 
 //adding server-side integration//
 function fetchUserData() {
-  const UserData = {
+  const userData = {
     accountType: 'registered',
   };
-  if (UserData.accountType === 'registered') {
+  if (userData.accountType === 'registered') {
     projectpageButton.textContent = 'Enroll';
   } else if (UserData.accountType === 'enrolled') {
     projectpageButton.textContent = 'Submit';
   } else if {
-    projectpageButton.textContent = 'Register'
+    projectpageButton.textContent = 'Register';
   }
 }
 
