@@ -25,3 +25,5 @@ function fetchUserData() {
     projectpageButton.textContent = "Register";
   }
 }
+
+fetchUserData();
