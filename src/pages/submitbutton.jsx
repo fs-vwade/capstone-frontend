@@ -11,3 +11,6 @@ projectpageButton.addEventListener("click", function () {
     console.log("Submitting form...");
   }
 });
+
+//adding server-side integration//
+function fetchUserData() {}
