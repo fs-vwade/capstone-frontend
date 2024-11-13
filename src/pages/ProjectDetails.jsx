@@ -32,9 +32,9 @@ const ProjectDetails = () => {
 				</div>
 
 				<SubmitButton
-					enrolled={project.enrolled}
-					studentId={project.studentId}
-					projectId={project.projectId}
+					enrolled={project?.enrolled}
+					studentId={project?.studentId}
+					projectId={id}
 				/>
 			</div>
 
