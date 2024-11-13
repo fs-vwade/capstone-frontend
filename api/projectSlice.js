@@ -15,7 +15,7 @@ const projectsApi = api.injectEndpoints({
 			providesTags: ["Project"],
 		}),
 		enroll: builder.mutation({
-			query: (id) => ({
+			query: ({ id }) => ({
 				url: `projects/${id}`,
 				method: "POST",
 			}),

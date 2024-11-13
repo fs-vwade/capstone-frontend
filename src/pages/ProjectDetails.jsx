@@ -31,7 +31,11 @@ const ProjectDetails = () => {
 					{/*<ProgressBar value={project.grade} label="Score" />*/}
 				</div>
 
-				<SubmitButton enrolled={project.enrolled} id={id} />
+				<SubmitButton
+					enrolled={project.enrolled}
+					studentId={project.studentId}
+					projectId={project.projectId}
+				/>
 			</div>
 
 			{/* Resource Links Section */}

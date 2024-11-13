@@ -3,16 +3,19 @@ import {
 	useSubmitMutation,
 } from "../../../api/projectSlice";
 
-export default function SubmitButton({ enrolled, id }) {
+export default function SubmitButton({ enrolled, projectId, studentId }) {
 	const [enroll, { error: enrollError }] = useEnrollMutation();
 	const [submit, { error: submitError }] = useSubmitMutation();
 
 	const doAction = async (e) => {
 		e.preventDefault();
+		// will build grade system later
+		const payload = enrolled
+			? { projectId, studentId, grade: 100 }
+			: { id: projectId };
 		const action = enrolled ? submit : enroll;
 
-		console.debug(action, id);
-		await action(id);
+		await action(payload);
 	};
 
 	return (
