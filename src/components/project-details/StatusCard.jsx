@@ -22,7 +22,7 @@ export default function StatusCard(props) {
 						? projectState.Fail
 						: projectState.InProgress
 				);
-		}, 500);
+		}, 0);
 
 		return () => clearTimeout(timeoutId);
 	}, []);
