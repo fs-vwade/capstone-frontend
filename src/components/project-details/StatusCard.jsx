@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { CheckCircle, XCircle, Clock } from "lucide-react"; // Icons for different statuses
 
 const projectState = Object.freeze({
 	NotEnrolled: "Not Enrolled",
-	InProgress: 1,
-	Success: 2,
-	Fail: -1,
+	InProgress: "In Progress",
+	Success: "Success",
+	Fail: "Fail",
 });
 
-export default function StatusCard({ enrolled, grade }) {
-	const [status, setStatus] = React.useState(projectState.NotEnrolled);
+export default function StatusCard(props) {
+	const { enrolled, grade } = props;
+	const [status, setStatus] = useState(projectState.NotEnrolled);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		const timeoutId = setTimeout(() => {
 			enrolled &&
 				setStatus(
@@ -22,30 +24,37 @@ export default function StatusCard({ enrolled, grade }) {
 				);
 		}, 500);
 
-		return clearTimeout(timeoutId);
-	});
+		return () => clearTimeout(timeoutId);
+	}, []);
 
-	const style = () => {
+	// Define background color and icon based on the status
+	const getStatusStyle = () => {
 		switch (status) {
-			case projectState.InProgress:
-				return "bg-blue-500";
 			case projectState.Success:
-				return "bg-green-500";
+				return { bgColor: "bg-green-500", Icon: CheckCircle, text: "Success" };
 			case projectState.Fail:
-				return "bg-red-500";
+				return { bgColor: "bg-red-500", Icon: XCircle, text: "Fail" };
+			case projectState.InProgress:
+				return { bgColor: "bg-blue-500", Icon: Clock, text: "In Progress" };
 			default:
-				return "bg-gray-500";
+				return { bgColor: "bg-gray-500", Icon: null, text: "Not Enrolled" };
 		}
 	};
 
+	const { bgColor, Icon, text } = getStatusStyle();
+	console.debug(grade);
+
 	return (
 		<div
-			name="ProjectStatusCard"
-			className={`px-3 py-1 rounded-full text-sm ${style()}`}
+			className={`flex flex-col items-center justify-center ${bgColor} text-white rounded-lg p-6 space-y-2`}
+			//style={{ width: "150px", height: "150px" }}
 		>
-			<div>{enrolled ? "enrolled" : "not enrolled"}</div>
-			<div>Grade: {grade} / 100</div>
-			<div>Status: {status}</div>
+			{Icon && <Icon className="w-8 h-8" />}
+			<div className="text-lg font-semibold">{text}</div>
+			<div>
+				<span className="text-3xl font-bold">{grade || 0}</span>
+				<span>/ 100</span>
+			</div>
 		</div>
 	);
 }
