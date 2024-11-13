@@ -24,14 +24,14 @@ const ProjectDetails = () => {
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 				<div className="bg-gray-800 rounded-lg p-6 space-y-4">
 					<h3 className="text-lg font-bold text-white">Project Status</h3>
-					<StatusCard props={project} />
+					<StatusCard enrolled={project?.enrolled} grade={project?.grade} />
 					<p className="text-gray-400">
 						{project.type} - {project.exp} EXP
 					</p>
-					<ProgressBar value={project.grade} label="Score" />
+					{/*<ProgressBar value={project.grade} label="Score" />*/}
 				</div>
 
-				<SubmitButton props={project} />
+				<SubmitButton enrolled={project.enrolled} id={id} />
 			</div>
 
 			{/* Resource Links Section */}
