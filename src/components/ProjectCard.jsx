@@ -28,7 +28,8 @@ const ProjectCard = ({ project, onClick }) => {
 				</span>
 			</div>
 			<p className="text-gray-400 mb-4">{project.description}</p>
-			<ProgressBar value={project.exp} max={100} label="Progress" />
+			<p className="text-gray-400">{project.exp} EXP</p>
+			<ProgressBar value={project.exp} max={project.exp} />
 		</div>
 	);
 };
