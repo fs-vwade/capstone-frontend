@@ -31,6 +31,9 @@ const ProjectDetails = () => {
 				</div>
 				{<ProgressBar value={project?.grade} label="Score" />}
 			</div>
+			<div className="bg-gray-800 rounded-lg p-6">
+				{<ProgressBar value={project?.grade} label="Score" />}
+			</div>
 		</div>
 	);
 };
