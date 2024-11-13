@@ -9,7 +9,8 @@ const projectState = Object.freeze({
 });
 
 export default function StatusCard(props) {
-	const { enrolled, grade } = props;
+	const [enrolled, setEnrolled] = useState(props.enrolled);
+	const [grade, setGrade] = useState(props.grade);
 	const [status, setStatus] = useState(projectState.NotEnrolled);
 
 	useEffect(() => {
@@ -25,7 +26,7 @@ export default function StatusCard(props) {
 		}, 0);
 
 		return () => clearTimeout(timeoutId);
-	}, []);
+	}, [enrolled, grade]);
 
 	// Define background color and icon based on the status
 	const getStatusStyle = () => {
