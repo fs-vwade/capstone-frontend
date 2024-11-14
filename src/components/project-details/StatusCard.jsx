@@ -8,28 +8,20 @@ const projectState = Object.freeze({
 	Fail: "Fail",
 });
 
-export default function StatusCard(props) {
-	const [enrolled, setEnrolled] = useState(props.enrolled);
-	const [grade, setGrade] = useState(props.grade);
+export default function StatusCard({ enrolled, grade }) {
 	const [status, setStatus] = useState(projectState.NotEnrolled);
-
-	useEffect(() => {
-		const timeoutId = setTimeout(() => {
-			enrolled &&
-				setStatus(
-					70 <= grade
-						? projectState.Success
-						: 0 < grade && grade < 70
-						? projectState.Fail
-						: projectState.InProgress
-				);
-		}, 0);
-
-		return () => clearTimeout(timeoutId);
-	}, [enrolled, grade]);
 
 	// Define background color and icon based on the status
 	const getStatusStyle = () => {
+		setStatus(
+			enrolled
+				? 70 <= grade
+					? projectState.Success
+					: 0 < grade
+					? projectState.Fail
+					: projectState.InProgress
+				: projectState.NotEnrolled
+		);
 		switch (status) {
 			case projectState.Success:
 				return { bgColor: "bg-green-500", Icon: CheckCircle, text: "Success" };
@@ -43,7 +35,6 @@ export default function StatusCard(props) {
 	};
 
 	const { bgColor, Icon, text } = getStatusStyle();
-	console.debug(grade);
 
 	return (
 		<div
