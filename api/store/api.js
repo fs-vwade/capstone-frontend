@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const API_URL = process.env.API_URL;
+const API_URL = "https://capstone-backend-dh78.onrender.com";
 
 const api = createApi({
 	baseQuery: fetchBaseQuery({
