@@ -32,6 +32,14 @@ const projectsApi = api.injectEndpoints({
 			transformResponse: (response) => response,
 			invalidatesTags: ["Project"],
 		}),
+		resign: builder.mutation({
+			query: ({ id }) => ({
+				url: `projects/${id}`,
+				method: "DELETE",
+			}),
+			transformResponse: (response) => response,
+			invalidatesTags: ["Project"],
+		}),
 	}),
 });
 
@@ -41,6 +49,7 @@ export const {
 	useGetProjectInfoQuery,
 	useEnrollMutation,
 	useSubmitMutation,
+	useResignMutation,
 } = projectsApi;
 
 export default projectsApi;

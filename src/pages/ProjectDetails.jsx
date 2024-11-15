@@ -3,6 +3,7 @@
 import { useParams } from "react-router-dom";
 import StatusCard from "../components/project-details/StatusCard";
 import SubmitButton from "../components/project-details/SubmitButton";
+import ResignButton from "../components/project-details/ResignButton";
 import { useGetProjectInfoQuery } from "../../api/projectSlice";
 
 const ProjectDetails = () => {
@@ -35,6 +36,9 @@ const ProjectDetails = () => {
 					studentId={project?.studentId}
 					projectId={projectId}
 				/>
+				{project?.enrolled && !project?.grade && (
+					<ResignButton projectId={projectId} />
+				)}
 			</div>
 
 			{/* Resource Links Section */}
