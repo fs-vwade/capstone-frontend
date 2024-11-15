@@ -1,24 +1,30 @@
 // src/pages/Projects.jsx
 
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
 import { useGetProjectsQuery } from "../../api/projectSlice";
-
-const STUDENT_KEY = localStorage.getItem("student-key") || null;
+import { STUDENT_KEY } from "../keys";
 
 const getToNext = () => {
 	const studentInfo = localStorage.getItem(STUDENT_KEY);
-	if (!studentInfo) return null;
-
-	const student = JSON.parse(studentInfo);
-	return 80 * Math.pow(1.25, Math.floor(student.level));
+	if (studentInfo) {
+		const student = JSON.parse(studentInfo);
+		return 80 * Math.pow(1.25, Math.floor(student.level || 0));
+	}
+	return 0;
 };
 
 const Projects = () => {
 	const navigate = useNavigate();
 	const { data: projects, isLoading, error } = useGetProjectsQuery();
+	const [toNext, setToNext] = useState(0);
 
-	const toNext = getToNext();
+	useEffect(() => {
+		const nextGoal = getToNext();
+
+		setToNext(nextGoal);
+	}, [projects]);
 
 	if (isLoading)
 		return (

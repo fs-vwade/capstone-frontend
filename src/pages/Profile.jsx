@@ -1,15 +1,13 @@
 import { useEffect } from "react";
 import ProgressBar from "../components/ProgressBar";
 import { useGetStudentQuery } from "../../api/studentSlice";
-
-const STUDENT_KEY = "studentInfo";
+import { STUDENT_KEY } from "../keys";
 
 const Profile = () => {
 	const { data: student, isLoading } = useGetStudentQuery();
 
 	useEffect(() => {
 		if (student) {
-			localStorage.setItem("student-key", STUDENT_KEY);
 			localStorage.setItem(STUDENT_KEY, JSON.stringify(student));
 		}
 	}, [student]);

@@ -30,11 +30,13 @@ const ProjectCard = ({ project, onClick, toNext }) => {
 			</div>
 			<p className="text-gray-400 mb-4">{project.description}</p>
 			<p className="text-gray-400">{project.exp} EXP</p>
-			<ProgressBar
-				value={Math.min(project.exp, toNext)}
-				max={toNext}
-				label={`${percentage}% To Next`}
-			/>
+			{0 < toNext && (
+				<ProgressBar
+					value={Math.min(project.exp, toNext)}
+					max={toNext}
+					label={`${percentage}% To Next`}
+				/>
+			)}
 		</div>
 	);
 };
