@@ -29,7 +29,7 @@ const projectsApi = api.injectEndpoints({
 				headers: { "Content-Type": "application/json" },
 				body: { studentId, projectId, grade },
 			}),
-			transformResponse: (response) => response,
+			transformResponse: ({ evaluation }) => evaluation,
 			invalidatesTags: ["Project"],
 		}),
 		resign: builder.mutation({
