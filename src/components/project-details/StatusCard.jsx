@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CheckCircle, XCircle, Clock } from "lucide-react"; // Icons for different statuses
 
 const projectState = Object.freeze({
@@ -11,17 +11,19 @@ const projectState = Object.freeze({
 export default function StatusCard({ enrolled, grade }) {
 	const [status, setStatus] = useState(projectState.NotEnrolled);
 
+	useEffect(() => {
+		const newStatus = enrolled
+			? 70 <= grade
+				? projectState.Success
+				: 0 < grade
+				? projectState.Fail
+				: projectState.InProgress
+			: projectState.NotEnrolled;
+		setStatus(newStatus);
+	}, [enrolled, grade]);
+
 	// Define background color and icon based on the status
 	const getStatusStyle = () => {
-		setStatus(
-			enrolled
-				? 70 <= grade
-					? projectState.Success
-					: 0 < grade
-					? projectState.Fail
-					: projectState.InProgress
-				: projectState.NotEnrolled
-		);
 		switch (status) {
 			case projectState.Success:
 				return { bgColor: "bg-green-500", Icon: CheckCircle, text: "Success" };
