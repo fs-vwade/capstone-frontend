@@ -1,6 +1,7 @@
 import ProgressBar from "./ProgressBar";
 
-const ProjectCard = ({ project, onClick }) => {
+const ProjectCard = ({ project, onClick, toNext }) => {
+	const percentage = (100 * project.exp) / toNext;
 	const getStatusColor = (status) => {
 		switch (status) {
 			case "completed":
@@ -29,7 +30,11 @@ const ProjectCard = ({ project, onClick }) => {
 			</div>
 			<p className="text-gray-400 mb-4">{project.description}</p>
 			<p className="text-gray-400">{project.exp} EXP</p>
-			<ProgressBar value={project.exp} max={project.exp} />
+			<ProgressBar
+				value={Math.min(project.exp, toNext)}
+				max={toNext}
+				label={`${percentage}% To Next`}
+			/>
 		</div>
 	);
 };

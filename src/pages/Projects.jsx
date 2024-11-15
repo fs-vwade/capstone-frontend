@@ -1,13 +1,24 @@
 // src/pages/Projects.jsx
 
-//import React from "react";
 import { useNavigate } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
 import { useGetProjectsQuery } from "../../api/projectSlice";
 
+const STUDENT_KEY = localStorage.getItem("student-key") || null;
+
+const getToNext = () => {
+	const studentInfo = localStorage.getItem(STUDENT_KEY);
+	if (!studentInfo) return null;
+
+	const student = JSON.parse(studentInfo);
+	return 80 * Math.pow(1.25, Math.floor(student.level));
+};
+
 const Projects = () => {
 	const navigate = useNavigate();
 	const { data: projects, isLoading, error } = useGetProjectsQuery();
+
+	const toNext = getToNext();
 
 	if (isLoading)
 		return (
@@ -56,6 +67,7 @@ const Projects = () => {
 					<ProjectCard
 						key={project.id}
 						project={project}
+						toNext={toNext}
 						onClick={() => navigate(`/projects/${project.id}`)}
 					/>
 				))}

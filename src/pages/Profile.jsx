@@ -1,9 +1,18 @@
+import { useEffect } from "react";
 import ProgressBar from "../components/ProgressBar";
 import { useGetStudentQuery } from "../../api/studentSlice";
 
+const STUDENT_KEY = "studentInfo";
+
 const Profile = () => {
 	const { data: student, isLoading } = useGetStudentQuery();
-	console.debug(student);
+
+	useEffect(() => {
+		if (student) {
+			localStorage.setItem("student-key", STUDENT_KEY);
+			localStorage.setItem(STUDENT_KEY, JSON.stringify(student));
+		}
+	}, [student]);
 
 	const levelPercent =
 		Math.floor((student?.level - Math.floor(student?.level)) * 10000) / 100;
