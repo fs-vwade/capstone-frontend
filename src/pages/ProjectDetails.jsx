@@ -1,14 +1,13 @@
 // src/pages/ProjectDetails.jsx
 
 import { useParams } from "react-router-dom";
-import ProgressBar from "../components/ProgressBar";
 import StatusCard from "../components/project-details/StatusCard";
 import SubmitButton from "../components/project-details/SubmitButton";
 import { useGetProjectInfoQuery } from "../../api/projectSlice";
 
 const ProjectDetails = () => {
-	const { id } = useParams();
-	const { data: project, isLoading } = useGetProjectInfoQuery(id);
+	const projectId = Number(useParams().id);
+	const { data: project, isLoading } = useGetProjectInfoQuery(projectId);
 
 	if (isLoading) return <div>Loading...</div>;
 
@@ -34,7 +33,7 @@ const ProjectDetails = () => {
 				<SubmitButton
 					enrolled={project?.enrolled}
 					studentId={project?.studentId}
-					projectId={id}
+					projectId={projectId}
 				/>
 			</div>
 
