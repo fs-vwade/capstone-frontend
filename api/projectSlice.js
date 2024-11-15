@@ -30,7 +30,7 @@ const projectsApi = api.injectEndpoints({
 				body: { studentId, projectId, grade },
 			}),
 			transformResponse: ({ evaluation }) => evaluation,
-			invalidatesTags: ["Project"],
+			invalidatesTags: ["Project", "Student"],
 		}),
 		resign: builder.mutation({
 			query: ({ id }) => ({
